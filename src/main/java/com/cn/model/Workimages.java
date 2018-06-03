@@ -1,7 +1,5 @@
 package com.cn.model;
 
-import java.util.Date;
-
 public class Workimages {
     private Integer id;
 
@@ -10,14 +8,6 @@ public class Workimages {
     private String imagePath;
 
     private Integer mainfigure;
-
-    private Date createTime;
-
-    private String createUserId;
-
-    private Date lastModifyTime;
-
-    private String lastModifyUserId;
 
     private String status;
 
@@ -51,38 +41,6 @@ public class Workimages {
 
     public void setMainfigure(Integer mainfigure) {
         this.mainfigure = mainfigure;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getCreateUserId() {
-        return createUserId;
-    }
-
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId == null ? null : createUserId.trim();
-    }
-
-    public Date getLastModifyTime() {
-        return lastModifyTime;
-    }
-
-    public void setLastModifyTime(Date lastModifyTime) {
-        this.lastModifyTime = lastModifyTime;
-    }
-
-    public String getLastModifyUserId() {
-        return lastModifyUserId;
-    }
-
-    public void setLastModifyUserId(String lastModifyUserId) {
-        this.lastModifyUserId = lastModifyUserId == null ? null : lastModifyUserId.trim();
     }
 
     public String getStatus() {

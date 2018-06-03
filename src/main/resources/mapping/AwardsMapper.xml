@@ -5,16 +5,11 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="awardsdate_time" property="awardsdateTime" jdbcType="TIMESTAMP" />
     <result column="awards_name" property="awardsName" jdbcType="VARCHAR" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
-    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP" />
-    <result column="last_modify_user_id" property="lastModifyUserId" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="award_img" property="awardImg" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, awardsdate_time, awards_name, create_time, create_user_id, last_modify_time, 
-    last_modify_user_id, status, award_img
+    id, awardsdate_time, awards_name, status, award_img
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -28,13 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.cn.model.Awards" >
     insert into awards (id, awardsdate_time, awards_name, 
-      create_time, create_user_id, last_modify_time, 
-      last_modify_user_id, status, award_img
-      )
+      status, award_img)
     values (#{id,jdbcType=INTEGER}, #{awardsdateTime,jdbcType=TIMESTAMP}, #{awardsName,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
-      #{lastModifyUserId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{awardImg,jdbcType=INTEGER}
-      )
+      #{status,jdbcType=VARCHAR}, #{awardImg,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.model.Awards" >
     insert into awards
@@ -47,18 +38,6 @@
       </if>
       <if test="awardsName != null" >
         awards_name,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="createUserId != null" >
-        create_user_id,
-      </if>
-      <if test="lastModifyTime != null" >
-        last_modify_time,
-      </if>
-      <if test="lastModifyUserId != null" >
-        last_modify_user_id,
       </if>
       <if test="status != null" >
         status,
@@ -77,18 +56,6 @@
       <if test="awardsName != null" >
         #{awardsName,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUserId != null" >
-        #{createUserId,jdbcType=VARCHAR},
-      </if>
-      <if test="lastModifyTime != null" >
-        #{lastModifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifyUserId != null" >
-        #{lastModifyUserId,jdbcType=VARCHAR},
-      </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
       </if>
@@ -106,18 +73,6 @@
       <if test="awardsName != null" >
         awards_name = #{awardsName,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUserId != null" >
-        create_user_id = #{createUserId,jdbcType=VARCHAR},
-      </if>
-      <if test="lastModifyTime != null" >
-        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifyUserId != null" >
-        last_modify_user_id = #{lastModifyUserId,jdbcType=VARCHAR},
-      </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
       </if>
@@ -131,10 +86,6 @@
     update awards
     set awardsdate_time = #{awardsdateTime,jdbcType=TIMESTAMP},
       awards_name = #{awardsName,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=VARCHAR},
-      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
-      last_modify_user_id = #{lastModifyUserId,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR},
       award_img = #{awardImg,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

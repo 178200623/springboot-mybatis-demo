@@ -2,29 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cn.mapper.ResumeMapper" >
   <resultMap id="BaseResultMap" type="com.cn.model.Resume" >
-    <id column="id" property="id" jdbcType="VARCHAR" />
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="resume_id" property="resumeId" jdbcType="VARCHAR" />
     <result column="resume" property="resume" jdbcType="VARCHAR" />
-    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP" />
-    <result column="last_modify_user_id" property="lastModifyUserId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, resume, last_modify_time, last_modify_user_id
+    id, resume_id, resume
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from resume
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from resume
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cn.model.Resume" >
-    insert into resume (id, resume, last_modify_time, 
-      last_modify_user_id)
-    values (#{id,jdbcType=VARCHAR}, #{resume,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
-      #{lastModifyUserId,jdbcType=VARCHAR})
+    insert into resume (id, resume_id, resume
+      )
+    values (#{id,jdbcType=INTEGER}, #{resumeId,jdbcType=VARCHAR}, #{resume,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cn.model.Resume" >
     insert into resume
@@ -32,51 +31,41 @@
       <if test="id != null" >
         id,
       </if>
+      <if test="resumeId != null" >
+        resume_id,
+      </if>
       <if test="resume != null" >
         resume,
-      </if>
-      <if test="lastModifyTime != null" >
-        last_modify_time,
-      </if>
-      <if test="lastModifyUserId != null" >
-        last_modify_user_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="resumeId != null" >
+        #{resumeId,jdbcType=VARCHAR},
       </if>
       <if test="resume != null" >
         #{resume,jdbcType=VARCHAR},
-      </if>
-      <if test="lastModifyTime != null" >
-        #{lastModifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifyUserId != null" >
-        #{lastModifyUserId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.cn.model.Resume" >
     update resume
     <set >
+      <if test="resumeId != null" >
+        resume_id = #{resumeId,jdbcType=VARCHAR},
+      </if>
       <if test="resume != null" >
         resume = #{resume,jdbcType=VARCHAR},
       </if>
-      <if test="lastModifyTime != null" >
-        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifyUserId != null" >
-        last_modify_user_id = #{lastModifyUserId,jdbcType=VARCHAR},
-      </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.cn.model.Resume" >
     update resume
-    set resume = #{resume,jdbcType=VARCHAR},
-      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
-      last_modify_user_id = #{lastModifyUserId,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
+    set resume_id = #{resumeId,jdbcType=VARCHAR},
+      resume = #{resume,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

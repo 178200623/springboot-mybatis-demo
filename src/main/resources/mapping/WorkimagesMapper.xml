@@ -6,15 +6,10 @@
     <result column="image_id" property="imageId" jdbcType="INTEGER" />
     <result column="image_path" property="imagePath" jdbcType="VARCHAR" />
     <result column="mainfigure" property="mainfigure" jdbcType="INTEGER" />
-    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
-    <result column="last_modify_time" property="lastModifyTime" jdbcType="TIMESTAMP" />
-    <result column="last_modify_user_id" property="lastModifyUserId" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, image_id, image_path, mainfigure, create_time, create_user_id, last_modify_time, 
-    last_modify_user_id, status
+    id, image_id, image_path, mainfigure, status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -28,13 +23,9 @@
   </delete>
   <insert id="insert" parameterType="com.cn.model.Workimages" >
     insert into workimages (id, image_id, image_path, 
-      mainfigure, create_time, create_user_id, 
-      last_modify_time, last_modify_user_id, status
-      )
+      mainfigure, status)
     values (#{id,jdbcType=INTEGER}, #{imageId,jdbcType=INTEGER}, #{imagePath,jdbcType=VARCHAR}, 
-      #{mainfigure,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, 
-      #{lastModifyTime,jdbcType=TIMESTAMP}, #{lastModifyUserId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
-      )
+      #{mainfigure,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.cn.model.Workimages" >
     insert into workimages
@@ -50,18 +41,6 @@
       </if>
       <if test="mainfigure != null" >
         mainfigure,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="createUserId != null" >
-        create_user_id,
-      </if>
-      <if test="lastModifyTime != null" >
-        last_modify_time,
-      </if>
-      <if test="lastModifyUserId != null" >
-        last_modify_user_id,
       </if>
       <if test="status != null" >
         status,
@@ -80,18 +59,6 @@
       <if test="mainfigure != null" >
         #{mainfigure,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUserId != null" >
-        #{createUserId,jdbcType=VARCHAR},
-      </if>
-      <if test="lastModifyTime != null" >
-        #{lastModifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifyUserId != null" >
-        #{lastModifyUserId,jdbcType=VARCHAR},
-      </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
       </if>
@@ -109,18 +76,6 @@
       <if test="mainfigure != null" >
         mainfigure = #{mainfigure,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUserId != null" >
-        create_user_id = #{createUserId,jdbcType=VARCHAR},
-      </if>
-      <if test="lastModifyTime != null" >
-        last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lastModifyUserId != null" >
-        last_modify_user_id = #{lastModifyUserId,jdbcType=VARCHAR},
-      </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
       </if>
@@ -132,10 +87,6 @@
     set image_id = #{imageId,jdbcType=INTEGER},
       image_path = #{imagePath,jdbcType=VARCHAR},
       mainfigure = #{mainfigure,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      create_user_id = #{createUserId,jdbcType=VARCHAR},
-      last_modify_time = #{lastModifyTime,jdbcType=TIMESTAMP},
-      last_modify_user_id = #{lastModifyUserId,jdbcType=VARCHAR},
       status = #{status,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
