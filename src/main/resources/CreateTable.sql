@@ -34,7 +34,7 @@ create table introduct(
 
 create table Partner_Team (
   id INTEGER not null primary key auto_increment, #	主键
-  Parend_id VARCHAR not null, #	人物唯一id
+  Parend_id VARCHAR(255) not null, #	人物唯一id
   name VARCHAR(255) not null, #	名字
   sex VARCHAR(2) not null, #	性别
   birthday DATETIME not null, #	出生日VARCHAR(255)期

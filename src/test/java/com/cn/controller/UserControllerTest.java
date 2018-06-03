@@ -1,8 +1,8 @@
 package com.cn.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.cn.model.User;
 import com.cn.service.UserService;
-import com.alibaba.fastjson.JSON;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserControllerTest {

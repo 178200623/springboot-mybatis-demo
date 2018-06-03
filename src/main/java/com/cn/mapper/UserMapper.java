@@ -1,7 +1,6 @@
 package com.cn.mapper;
 
 import com.cn.model.User;
-
 import java.util.List;
 
 public interface UserMapper {
