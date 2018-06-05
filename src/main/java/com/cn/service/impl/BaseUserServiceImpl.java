@@ -1,6 +1,7 @@
 package com.cn.service.impl;
 
 import com.cn.mapper.BaseUserMapper;
+import com.cn.model.BaseUser;
 import com.cn.service.BaseUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,9 @@ public class BaseUserServiceImpl implements BaseUserService {
     private BaseUserMapper baseUserMapper;
 
     @Override
-    public String selectById(String id) {
+    public BaseUser selectById(String id) {
 
-        return baseUserMapper.selectByPrimaryKey(id);
+        BaseUser baseUser =  baseUserMapper.selectByPrimaryKey(id);
+        return baseUser;
     }
 }

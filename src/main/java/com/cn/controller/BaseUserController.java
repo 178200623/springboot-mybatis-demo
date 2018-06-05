@@ -1,6 +1,8 @@
 package com.cn.controller;
 
+import com.cn.model.BaseUser;
 import com.cn.service.BaseUserService;
+import com.cn.service.impl.BaseUserServiceImpl;
 import com.cn.util.Result;
 import com.cn.util.ResultUtil;
 import org.slf4j.Logger;
@@ -9,19 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
-@RestController("/base")
+@RestController
 public class BaseUserController {
 
-    private Logger logger = LoggerFactory.getLogger(BaseUserController.class);
     @Autowired
     private BaseUserService baseUserService;
 
     Result result = ResultUtil.success();
     @ResponseBody
     @RequestMapping("/select")
-    public Result selectAllUser(String id){
+    public Result selectUserById(@RequestParam("id") String id){
 
-        String str = baseUserService.selectById("1");
+        BaseUser str = baseUserService.selectById(id);
         result = ResultUtil.success(str);
         return result;
     }

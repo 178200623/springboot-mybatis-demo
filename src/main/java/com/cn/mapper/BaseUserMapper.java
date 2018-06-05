@@ -9,7 +9,7 @@ public interface BaseUserMapper {
 
     int insertSelective(BaseUser record);
 
-    String selectByPrimaryKey(String id);
+    BaseUser selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(BaseUser record);
 

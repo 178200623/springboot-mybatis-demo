@@ -1,5 +1,9 @@
 package com.cn.service;
 
+import com.cn.model.BaseUser;
+
 public interface BaseUserService {
-    String selectById(String id);
+    BaseUser selectById(String id);
+
+
 }
