@@ -18,7 +18,7 @@ public class PartnerTeamController {
     @RequestMapping("/api/summary/partner")
     public Result selectAllPartner() throws Exception{
 
-        partnerTeamService.selelctAllPartner();
-        return result
+
+        return result;
     }
 }
