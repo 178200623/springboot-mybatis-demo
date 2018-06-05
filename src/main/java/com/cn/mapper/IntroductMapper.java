@@ -14,4 +14,6 @@ public interface IntroductMapper {
     int updateByPrimaryKeySelective(Introduct record);
 
     int updateByPrimaryKey(Introduct record);
+
+    Introduct selectContentById(int id);
 }

@@ -14,4 +14,6 @@ public interface PartnerTeamMapper {
     int updateByPrimaryKeySelective(PartnerTeam record);
 
     int updateByPrimaryKey(PartnerTeam record);
+
+    PartnerTeam selectAllPartner();
 }

@@ -13,9 +13,14 @@ public class BaseUserServiceImpl implements BaseUserService {
     private BaseUserMapper baseUserMapper;
 
     @Override
-    public BaseUser selectById(String id) {
+    public BaseUser selectById(String id) throws Exception{
+        BaseUser baseUser = null;
+        try {
+             baseUser =  baseUserMapper.selectByPrimaryKey(id);
 
-        BaseUser baseUser =  baseUserMapper.selectByPrimaryKey(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return baseUser;
     }
 }

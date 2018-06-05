@@ -20,7 +20,7 @@ public class BaseUserController {
     Result result = ResultUtil.success();
     @ResponseBody
     @RequestMapping("/select")
-    public Result selectUserById(@RequestParam("id") String id){
+    public Result selectUserById(@RequestParam("id") String id) throws Exception {
 
         BaseUser str = baseUserService.selectById(id);
         result = ResultUtil.success(str);
