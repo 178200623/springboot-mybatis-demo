@@ -17,33 +17,84 @@ public class PartnerTeamServiceImpl implements PartnerTeamService {
 
 
     @Override
-    public List<Map<String, Object>> selelctAllPartner() {
-
-        List<Map<String, Object>> listPar = partnerTeamMapper.selectPartner();
-        List<Map<String, Object>> listAllPar = null;
-        Map<String, Object> listAllParOne = null;
-        List<Map<String, Object>> all = new ArrayList<Map<String,Object>>();
-        if(listPar.size() > 0 ){
-            for(int i = 0;i<listPar.size(); i++){
-                listAllParOne = new HashMap<String, Object>();
-                String partner_id = listPar.get(i).get("Parend_id").toString();
-                listAllPar = partnerTeamMapper.selectAllPartner(partner_id);
-                if(listAllPar.size() > 0) {
-                    List<String> list = new ArrayList<String>();
-                    String name = listAllPar.get(0).get("name").toString();
-                    for (int a = 0;a <listAllPar.size();a++){
-                        String  resume = listAllPar.get(a).get("resume").toString();
-                        list.add(resume);
+    public Map<String, Object> selelctAllPartner() {
+        Map<String, Object> result = new HashMap<String, Object>();
+        List<Map<String, Object>> listAllResume = null;
+        Map<String, Object> listOneResume= null;
+        try {
+            List<Map<String, Object>> listPar = partnerTeamMapper.selectPartner();
+            String img = listPar.get(0).get("img").toString();
+            List<Map<String, Object>> resultPartnerResume = new ArrayList<Map<String,Object>>();
+            List listResult = new ArrayList();
+            if(listPar.size() > 0 ){
+                for(int i = 0;i<listPar.size(); i++){
+                    listOneResume = new HashMap<String, Object>();
+                    String partner_id = listPar.get(i).get("ParendId").toString();
+                    listAllResume = partnerTeamMapper.selectAllPartner(partner_id);
+                    if(listAllResume.size() > 0) {
+                        List<String> listResume = new ArrayList<String>();
+                        String name = listAllResume.get(0).get("name").toString();
+                        for (int a = 0;a <listAllResume.size();a++){
+                            String  resume = listAllResume.get(a).get("resume").toString();
+                            listResume.add(resume);
+                        }
+                        listOneResume.clear();
+                        listOneResume.put("name",name);
+                        listOneResume.put("experience",listResume);
                     }
-                    listAllParOne.clear();
-                    listAllParOne.put("name",name);
-                    listAllParOne.put("resume",list);
+                    resultPartnerResume.add(listOneResume);
                 }
-                all.add(listAllParOne);
-
             }
+            listResult.add(resultPartnerResume);
+            result.put("partner",listResult);
+            result.put("img",img);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return all;
+
+        return result;
+    }
+
+    @Override
+    public Map<String, Object> selelctOtherPartner() {
+
+        Map<String, Object> resultOther = new HashMap<String, Object>();
+        List<Map<String, Object>> listOtherResume = null;
+        Map<String, Object> listOneResume= null;
+        try {
+            List<Map<String, Object>> listOtherPar = partnerTeamMapper.selectOtherPartner();
+            String img = listOtherPar.get(0).get("img").toString();
+            String title = listOtherPar.get(0).get("title").toString();
+            List<Map<String, Object>> resultPartnerResume = new ArrayList<Map<String,Object>>();
+            List listResult = new ArrayList();
+            if(listOtherPar.size() > 0 ){
+                for(int i = 0;i<listOtherPar.size(); i++){
+                    listOneResume = new HashMap<String, Object>();
+                    String partner_id = listOtherPar.get(i).get("ParendId").toString();
+                    listOtherResume = partnerTeamMapper.selectAllPartner(partner_id);
+                    if(listOtherResume.size() > 0) {
+                        List<String> listResume = new ArrayList<String>();
+                        String name = listOtherResume.get(0).get("name").toString();
+                        for (int a = 0;a <listOtherResume.size();a++){
+                            String  resume = listOtherResume.get(a).get("resume").toString();
+                            listResume.add(resume);
+                        }
+                        listOneResume.clear();
+                        listOneResume.put("name",name);
+                        listOneResume.put("experience",listResume);
+                    }
+                    resultPartnerResume.add(listOneResume);
+                }
+            }
+            listResult.add(resultPartnerResume);
+            resultOther.put("title",title);
+            resultOther.put("partner",listResult);
+            resultOther.put("img",img);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return resultOther;
     }
 
 }

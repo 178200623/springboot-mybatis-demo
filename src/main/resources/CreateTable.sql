@@ -64,6 +64,7 @@ create table Resume (
 create table Position	(
   id	INTEGER	not null primary key auto_increment,#	主键
   position_name	VARCHAR(255)	not null #	职位名称
+  partner_img INTEGER DEFAULT null #	封面图Workimages_id
 )
 部门表Department
 
@@ -118,6 +119,7 @@ create table Workimages(
   image_path	VARCHAR(255)	not null,#	图片路径
   mainfigure	INTEGER	not null,#	封面主图(是/否)
   status	VARCHAR(2)	DEFAULT null #	状态(正常or作废)
+  remark  VARCHAR(2)	DEFAULT null #	备注
 )
 
 

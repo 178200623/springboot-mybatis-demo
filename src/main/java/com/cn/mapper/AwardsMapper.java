@@ -2,6 +2,9 @@ package com.cn.mapper;
 
 import com.cn.model.Awards;
 
+import java.util.List;
+import java.util.Map;
+
 public interface AwardsMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +17,6 @@ public interface AwardsMapper {
     int updateByPrimaryKeySelective(Awards record);
 
     int updateByPrimaryKey(Awards record);
+
+    List<Map<String,Object>> selectContent();
 }

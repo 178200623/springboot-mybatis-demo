@@ -33,9 +33,14 @@
     where a.Parend_id = b.resume_id  and a.Parend_id=#{parendId,jdbcType=VARCHAR}
   </select>
   <select id="selectPartner" resultType="java.util.Map" >
-    select Parend_id
-    from partner_team
-    where position_id = 1
+    select a.Parend_id as ParendId ,b.image_path as img
+    from partner_team a,workimages b,position c
+    where a.position_id=c.id and c.position_img=b.image_id and a.position_id = 1
+  </select>
+  <select id="selectOtherPartner" resultType="java.util.Map" >
+    select a.Parend_id as ParendId ,b.image_path as img,c.position_name as title
+    from partner_team a,workimages b,position c
+    where a.position_id=c.id and c.position_img=b.image_id and a.position_id is not null and a.position_id !=1
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
