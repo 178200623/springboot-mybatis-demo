@@ -1,5 +1,8 @@
 package com.cn.service;
 
+import java.util.List;
+import java.util.Map;
+
 public interface PartnerTeamService {
-    void selelctAllPartner(int id) throws Exception;
+    List<Map<String, Object>> selelctAllPartner() throws Exception;
 }

@@ -2,6 +2,9 @@ package com.cn.mapper;
 
 import com.cn.model.PartnerTeam;
 
+import java.util.List;
+import java.util.Map;
+
 public interface PartnerTeamMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -15,5 +18,6 @@ public interface PartnerTeamMapper {
 
     int updateByPrimaryKey(PartnerTeam record);
 
-    PartnerTeam selectAllPartner();
+    List<Map<String, Object>> selectAllPartner(String id);
+    List<Map<String, Object>> selectPartner();
 }

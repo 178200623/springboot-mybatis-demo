@@ -21,28 +21,24 @@
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="partner_img" property="partnerImg" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="PartnerTeam" type="com.cn.model.PartnerTeam">
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="Parend_id" property="parendId" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <collection property="resume" ofType="com.cn.model.Resume">
-      <id property="id" column="r_id"/>
-      <result property="resumeId" column="r_resumeId"/>
-      <result property="resume" column="r_resume" />
-    </collection>
-  </resultMap>
   <sql id="Base_Column_List" >
-    id, Parend_id, name, sex, birthday, address, contactphone, nationalitycode, nationcaode, 
-    create_time, create_user_id, last_modify_time, last_modify_user_id, position_id, 
+    id, Parend_id, name, sex, birthday, address, contactphone, nationalitycode, nationcaode,
+    create_time, create_user_id, last_modify_time, last_modify_user_id, position_id,
     department_id, remark, status, partner_img
   </sql>
-  <select id="selectAllPartner" resultMap="PartnerTeam" parameterType="java.lang.Integer">
-    select a.name as name ,b.r_resume as resume
+  <select id="selectAllPartner" resultType="java.util.Map" parameterType="java.lang.String">
+    -- select a.name as name ,GROUP_CONCAT(CONCAT('"',b.resume,'"')) as resume
+    select a.name as name ,b.resume as resume
     from partner_team a,resume b
-    where a.parendId = b.r_id and a.parendId=#{id,jdbcType=INTEGER}
+    where a.Parend_id = b.resume_id  and a.Parend_id=#{parendId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectPartner" resultType="java.util.Map" >
+    select Parend_id
+    from partner_team
+    where position_id = 1
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from partner_team
     where id = #{id,jdbcType=INTEGER}
@@ -52,18 +48,18 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.cn.model.PartnerTeam" >
-    insert into partner_team (id, Parend_id, name, 
-      sex, birthday, address, 
-      contactphone, nationalitycode, nationcaode, 
-      create_time, create_user_id, last_modify_time, 
-      last_modify_user_id, position_id, department_id, 
+    insert into partner_team (id, Parend_id, name,
+      sex, birthday, address,
+      contactphone, nationalitycode, nationcaode,
+      create_time, create_user_id, last_modify_time,
+      last_modify_user_id, position_id, department_id,
       remark, status, partner_img
       )
-    values (#{id,jdbcType=INTEGER}, #{parendId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR}, 
-      #{contactphone,jdbcType=VARCHAR}, #{nationalitycode,jdbcType=VARCHAR}, #{nationcaode,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP}, 
-      #{lastModifyUserId,jdbcType=VARCHAR}, #{positionId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{parendId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{address,jdbcType=VARCHAR},
+      #{contactphone,jdbcType=VARCHAR}, #{nationalitycode,jdbcType=VARCHAR}, #{nationcaode,jdbcType=VARCHAR},
+      #{createTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{lastModifyTime,jdbcType=TIMESTAMP},
+      #{lastModifyUserId,jdbcType=VARCHAR}, #{positionId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER},
       #{remark,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{partnerImg,jdbcType=INTEGER}
       )
   </insert>
