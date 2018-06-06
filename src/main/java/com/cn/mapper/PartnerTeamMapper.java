@@ -18,5 +18,6 @@ public interface PartnerTeamMapper {
 
     int updateByPrimaryKey(PartnerTeam record);
 
-    List<Map<String, Object>> selectAllPartner(int id);
+    List<Map<String, Object>> selectAllPartner(String id);
+    List<Map<String, Object>> selectPartner();
 }

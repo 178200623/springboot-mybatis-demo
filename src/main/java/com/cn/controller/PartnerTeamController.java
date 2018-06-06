@@ -22,7 +22,7 @@ public class PartnerTeamController {
     @RequestMapping("/api/summary/partner")
     public Result selectAllPartner() throws Exception{
         List<Map<String, Object>> mapList = null;
-        mapList = partnerTeamService.selelctAllPartner(1);
+        mapList = partnerTeamService.selelctAllPartner();
         result = ResultUtil.success(mapList);
         return result;
     }
