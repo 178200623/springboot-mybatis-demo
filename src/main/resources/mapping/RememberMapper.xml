@@ -21,6 +21,17 @@
     from remember
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectYearList" resultType="java.util.Map">
+    select DISTINCT DATE_FORMAT(remember_time,'%Y') as year
+    from remember
+    order by remember_time desc
+  </select>
+  <select id="selectContentByYear" resultType="java.util.Map" parameterType="java.lang.String">
+    select description as content
+    from remember
+    where DATE_FORMAT(remember_time,'%Y') = #{remember_time,jdbcType=VARCHAR}
+    order by remember_time desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from remember
     where id = #{id,jdbcType=INTEGER}

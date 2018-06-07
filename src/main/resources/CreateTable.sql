@@ -64,7 +64,7 @@ create table Resume (
 create table Position	(
   id	INTEGER	not null primary key auto_increment,#	主键
   position_name	VARCHAR(255)	not null #	职位名称
-  partner_img INTEGER DEFAULT null #	封面图Workimages_id
+  position_img INTEGER DEFAULT null #	封面图Workimages_id
 )
 部门表Department
 
@@ -94,7 +94,7 @@ create table Works(
   coveredarea	VARCHAR(255)	DEFAULT null,#	建筑面积(单位:平方米)
   designstart_time	DATETIME	not null,#	设计开始时间
   designstop_time	DATETIME	DEFAULT null,#	设计结束时间
-  completion_time	DATETIME	DEFAULT null,#	竣工时间
+  completion_time	VARCHAR(255)	DEFAULT null,#	竣工时间
   design_id	VARCHAR(255)	DEFAULT null,#	设计师id,关联人物表Patient_id
   design_name	VARCHAR(255)	DEFAULT null,#	设计师名称
   description	VARCHAR(1000)	DEFAULT null,#	作品简述
@@ -199,6 +199,7 @@ create table Contact(
   last_modify_time	DATETIME	DEFAULT null,#	最后一次修改时间
   last_modify_user_id	VARCHAR(255)	DEFAULT null,#	最后一次修改者,关联用户表base_user
   status	VARCHAR(255)	not null #	状态(正常or作废)
+  contact_img VARCHAR(255)	DEFAULT null
 )
 
 

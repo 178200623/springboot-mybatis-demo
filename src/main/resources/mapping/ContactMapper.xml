@@ -15,6 +15,11 @@
     <result column="last_modify_user_id" property="lastModifyUserId" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectDetils" resultType="java.util.Map" >
+    select a.address,a.zipcode,a.telephone,a.fax,a.ec_mail,a.bm_mail,a.rp_mail,b.image_path as img
+    from contact a,workimages b
+    where a.contact_img=b.image_id
+  </select>
   <insert id="insert" parameterType="com.cn.model.Contact" >
     insert into contact (address, zipcode, telephone, 
       fax, ec_mail, bm_mail, 

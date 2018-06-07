@@ -26,10 +26,22 @@
     last_modify_time, last_modify_user_id, comment_id, status
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from works
     where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectById" resultType="java.util.Map" parameterType="java.lang.Integer" >
+    select a.id as id, a.work_name as name, c.worktype_name as type, a.constructionsite as location, a.coveredarea as area,
+      a.completion_time as designtime,a.description as description,b.image_path as img
+    from works a,workimages b,worktype c
+    where a.id=b.image_id and a.worktype_id =c.id and a.id = #{id,jdbcType=INTEGER}
+    order by b.mainfigure
+  </select>
+  <select id="selectListWorks" resultType="java.util.Map">
+    select a.id as id,b.image_path as img,a.work_name as name,c.worktype_name as type,a.completion_time as years
+    from works a,workimages b,worktype c
+    where a.id=b.image_id and a.worktype_id =c.id and b.mainfigure=0
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from works
