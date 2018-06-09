@@ -13,10 +13,10 @@ public interface RememberService {
 
     /**
      * 获取单年记事
-     * @param id
+     * @param year
      * @return
      * @throws Exception
      */
-    Map<String,Object> selectContentById(int id) throws Exception;
+    Map<String,Object> selectContentByYear(String year) throws Exception;
 
 }

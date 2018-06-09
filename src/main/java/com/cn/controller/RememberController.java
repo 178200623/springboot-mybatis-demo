@@ -38,10 +38,10 @@ public class RememberController {
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping("api/memo/{id}")
-    public Result selectContentByYear(@PathVariable("id") int id ) throws Exception{
+    @RequestMapping("api/memo/{year}")
+    public Result selectContentByYear(@PathVariable("year") String year ) throws Exception{
 
-        result = ResultUtil.success(rememberService.selectContentById(id));
+        result = ResultUtil.success(rememberService.selectContentByYear(year));
 
         return result;
     }

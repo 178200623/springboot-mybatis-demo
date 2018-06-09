@@ -46,17 +46,17 @@ public class RememberServiceImpl implements RememberService {
 
     /**
      * 获取单年记事
-     * @param id
+     * @param year
      * @return
      * @throws Exception
      */
     @Override
-    public Map<String, Object> selectContentById(int id) throws Exception {
+    public Map<String, Object> selectContentByYear(String year) throws Exception {
 
         Map<String,Object> contentList =null;
         Map<String,Object> contentMap = new HashMap<String,Object>();
         try {
-            contentList = rememberMapper.selectContentById(id);
+            contentList = rememberMapper.selectContentByYear(year);
             contentMap.put("memo",contentList);
         }catch (Exception e){
             e.printStackTrace();

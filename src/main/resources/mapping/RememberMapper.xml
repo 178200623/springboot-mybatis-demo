@@ -26,10 +26,10 @@
     from remember
     order by remember_time desc
   </select>
-  <select id="selectContentById" resultType="java.util.Map" parameterType="java.lang.Integer">
+  <select id="selectContentByYear" resultType="java.util.Map" parameterType="java.lang.String">
     select description as content
     from remember
-    where id = #{id,jdbcType=INTEGER}
+    where DATE_FORMAT(remember_time,'%Y') = #{remember_time,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from remember
