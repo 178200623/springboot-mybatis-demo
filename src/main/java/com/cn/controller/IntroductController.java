@@ -20,8 +20,8 @@ public class IntroductController {
     @RequestMapping("/api/summary/introduction")
     public Result selectContent() throws Exception {
 
-        String str = introductService.selectContent();
-        result = ResultUtil.success(str);
+        ;
+        result = ResultUtil.success(introductService.selectContent());
         return result;
     }
 }

@@ -1,6 +1,6 @@
 package com.cn.controller;
 
-import com.cn.service.RememberService;
+import com.cn.service.CommentService;
 import com.cn.util.Result;
 import com.cn.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,40 +9,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
-public class RememberController {
+public class CommentController {
 
     @Autowired
-    private RememberService rememberService;
+    private CommentService commentService;
 
     private Result result;
 
     /**
-     * 获取记事年份列表
+     *获取评论列表
      * @return
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping("api/memo/yearlist")
-    public Result selectYearList() throws Exception{
+    @RequestMapping("/api/media/comments")
+    public Result selectCommentList() throws Exception {
 
-        result = ResultUtil.success( rememberService.selectYearList());
-
+        result = ResultUtil.success(commentService.selectCommentList());
         return result;
     }
 
     /**
-     * 获取单年记事
+     * 获取某个评论文章
+     * @param id
      * @return
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping("api/memo/{id}")
-    public Result selectContentByYear(@PathVariable("id") int id ) throws Exception{
+    @RequestMapping("/api/media/comments/{id}")
+    public Result selectContentById(@PathVariable("id") int id) throws Exception {
 
-        result = ResultUtil.success(rememberService.selectContentById(id));
-
+        result = ResultUtil.success(commentService.selectById(id));
         return result;
     }
 }

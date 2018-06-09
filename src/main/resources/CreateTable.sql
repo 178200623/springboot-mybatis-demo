@@ -128,15 +128,15 @@ create table Workimages(
 出版Publish
 create table Publish(
   id	INTEGER	not null primary key auto_increment,#
-  publish_name	VARCHAR(255) 	DEFAULT null,#	出版读物
-  publish_time	DATETIME	DEFAULT null,#	出版时间
+  publish_name	VARCHAR(255) 	not null,#	出版读物
+  publish_time	DATETIME	not null,#	出版时间
   description	VARCHAR(255) 	not null,#	出版描述
   create_time	DATETIME	not null,#	创建时间
   create_user_id	VARCHAR(255) 	not null,#	创建者,关联用户表base_user
   last_modify_time	DATETIME	DEFAULT null,#	最后一次修改时间
   last_modify_user_id	VARCHAR(255) 	DEFAULT null,#	最后一次修改者,关联用户表base_user
   status	VARCHAR(2) 	DEFAULT null,#	状态(正常or作废)
-  publish_img	INTEGER	DEFAULT null #	封面图Workimages_id
+  publish_img	INTEGER	not null #	封面图Workimages_id
 )
 评论表Comment
 
@@ -170,7 +170,7 @@ create table Exhibition(
 
 
 -------------------------------------------------------记事------------------------------------------------------
-出版Remember
+记事Remember
 
 create table Remember(
   id	INTEGER	not null primary key auto_increment,#

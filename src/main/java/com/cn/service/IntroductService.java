@@ -1,5 +1,7 @@
 package com.cn.service;
 
+import java.util.Map;
+
 public interface IntroductService {
-    String selectContent() throws Exception;
+    Map<String,Object> selectContent() throws Exception;
 }

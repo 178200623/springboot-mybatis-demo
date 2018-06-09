@@ -10,7 +10,7 @@ public interface WorksService {
      * @return
      * @throws Exception
      */
-    List<Map<String,Object>> selectListWorks() throws Exception;
+    Map<String,Object> selectListWorks() throws Exception;
 
     /**
      * 获取单个作品

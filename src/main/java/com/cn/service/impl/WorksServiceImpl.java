@@ -22,15 +22,18 @@ public class WorksServiceImpl implements WorksService {
      * @throws Exception
      */
     @Override
-    public List<Map<String,Object>> selectListWorks() throws Exception {
+    public Map<String,Object> selectListWorks() throws Exception {
 
         List<Map<String,Object>> allWorks = null;
+        Map<String,Object> mapWorks = new HashMap<String,Object>();
+
         try {
             allWorks = worksMapper.selectListWorks();
+            mapWorks.put("works",allWorks);
         }catch (Exception e){
             e.printStackTrace();
         }
-        return allWorks;
+        return mapWorks;
     }
 
     /**

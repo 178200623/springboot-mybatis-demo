@@ -23,6 +23,17 @@
     from publish
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectYearList" resultType="java.util.Map">
+    select DISTINCT DATE_FORMAT(publish_time,'%Y') as year
+    from publish
+    order by publish_time desc
+  </select>
+  <select id="selectPublishByYear" resultType="java.util.Map" parameterType="java.lang.String">
+    select a.publish_name as name,DATE_FORMAT(a.publish_time,'%Y') as time,a.description as description,b.image_path as img
+    from publish a left join workimages b on a.publish_img=b.image_id
+    where  DATE_FORMAT(a.publish_time,'%Y') = #{remember_time,jdbcType=VARCHAR}
+    order by a.publish_time desc
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from publish
     where id = #{id,jdbcType=INTEGER}

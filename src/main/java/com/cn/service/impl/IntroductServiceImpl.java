@@ -6,6 +6,8 @@ import com.cn.service.IntroductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 
 @Service
 public class IntroductServiceImpl implements IntroductService {
@@ -14,15 +16,14 @@ public class IntroductServiceImpl implements IntroductService {
     private IntroductMapper introductMapper;
 
     @Override
-    public String selectContent() throws Exception {
-        Introduct introduct = null;
+    public Map<String,Object> selectContent() throws Exception {
+        Map<String,Object> introduct = null;
         String content = null;
         try {
-            introduct = introductMapper.selectContentById(1);
-            content = introduct.getContent();
+            introduct = introductMapper.selectContentById();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return content;
+        return introduct;
     }
 }

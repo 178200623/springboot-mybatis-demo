@@ -61,12 +61,13 @@ public class PartnerTeamServiceImpl implements PartnerTeamService {
         Map<String, Object> resultOther = new HashMap<String, Object>();
         List<Map<String, Object>> listOtherResume = null;
         Map<String, Object> listOneResume= null;
+        Map<String, Object> listTeam = new HashMap<>();
+        List<Map<String, Object>> list = new ArrayList<>();
         try {
             List<Map<String, Object>> listOtherPar = partnerTeamMapper.selectOtherPartner();
             String img = listOtherPar.get(0).get("img").toString();
             String title = listOtherPar.get(0).get("title").toString();
-            List<Map<String, Object>> resultPartnerResume = new ArrayList<Map<String,Object>>();
-            List listResult = new ArrayList();
+            List resultPartnerResume = new ArrayList<Map<String,Object>>();
             if(listOtherPar.size() > 0 ){
                 for(int i = 0;i<listOtherPar.size(); i++){
                     listOneResume = new HashMap<String, Object>();
@@ -86,15 +87,16 @@ public class PartnerTeamServiceImpl implements PartnerTeamService {
                     resultPartnerResume.add(listOneResume);
                 }
             }
-            listResult.add(resultPartnerResume);
             resultOther.put("title",title);
-            resultOther.put("partner",listResult);
-            resultOther.put("img",img);
+            resultOther.put("member",resultPartnerResume);
+            list.add(resultOther);
+            listTeam.put("team",list);
+            listTeam.put("img",img);
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        return resultOther;
+        return listTeam;
     }
 
 }

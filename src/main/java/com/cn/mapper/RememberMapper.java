@@ -28,5 +28,5 @@ public interface RememberMapper {
      * 获取单年记事
      * @return
      */
-    List<Map<String,Object>> selectContentByYear(String year);
+    Map<String,Object> selectContentById(int id);
 }

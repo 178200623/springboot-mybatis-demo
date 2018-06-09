@@ -23,6 +23,16 @@
     from comment
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select title,content,author
+    from comment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectCommentList" resultType="java.util.Map">
+    select a.id as id,a.title as content,b.image_path as img
+    from comment a,workimages b
+    where a.comment_img = b.image_id
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from comment
     where id = #{id,jdbcType=INTEGER}

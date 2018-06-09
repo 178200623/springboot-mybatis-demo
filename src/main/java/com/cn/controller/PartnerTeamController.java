@@ -44,6 +44,7 @@ public class PartnerTeamController {
     public Result selectOtherPartner() throws Exception{
         Map<String, Object>  mapList = new HashMap<String, Object>();
         mapList = partnerTeamService.selelctOtherPartner();
+
         result = ResultUtil.success(mapList);
         return result;
     }

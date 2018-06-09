@@ -2,6 +2,8 @@ package com.cn.mapper;
 
 import com.cn.model.Introduct;
 
+import java.util.Map;
+
 public interface IntroductMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -15,5 +17,5 @@ public interface IntroductMapper {
 
     int updateByPrimaryKey(Introduct record);
 
-    Introduct selectContentById(int id);
+    Map<String,Object> selectContentById();
 }

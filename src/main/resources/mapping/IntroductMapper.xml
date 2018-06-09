@@ -21,11 +21,10 @@
     from introduct
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectContentById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    select
-    content
-    from introduct
-    where id = #{id,jdbcType=INTEGER}
+  <select id="selectContentById" resultType="java.util.Map" >
+    select a.content as introduction,b.image_path as img
+    from introduct a,workimages b
+    where a.introduct_img =b.image_id and  a.id = 1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from introduct
