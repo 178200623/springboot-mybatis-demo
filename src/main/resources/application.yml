@@ -1,5 +1,5 @@
 server:
-  port: 12580
+  port: 8888
 
 spring:
     datasource:
@@ -23,13 +23,32 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    mvc:
+      static-path-pattern: /**
+    resources:
+        static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.cn.model
 
-#pagehelper分页插件
-pagehelper:
-    helperDialect: mysql
-    reasonable: true
-    supportMethodsArguments: true
-    params: count=countSql
+
+#FreeMarker 配置
+spring.freemarker.allow-request-override: false
+#Enable template caching.启用模板缓存
+spring.freemarker.cache: false
+spring.freemarker.check-template-location: true
+spring.freemarker.charset: UTF-8
+spring.freemarker.content-type: text/html
+spring.freemarker.expose-request-attributes: false
+spring.freemarker.expose-session-attributes: false
+spring.freemarker.expose-spring-macro-helpers: false
+#设置面板后缀
+spring.freemarker.suffix: .ftl
+
+#设置单个文件最大内存
+multipart.maxFileSize: 50Mb
+#设置所有文件最大内存
+multipart.maxRequestSize: 50Mb
+#自定义文件上传路径
+web:
+  upload-path: D:/img
