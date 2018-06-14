@@ -2,7 +2,7 @@ package com.cn.util;
 
 public class Result<T> {
     //    error_code 状态值：0 极为成功，其他数值代表失败
-    private Integer status;
+    private Integer code;
 
     //    error_msg 错误信息，若status为0时，为success
     private String msg;
@@ -10,12 +10,12 @@ public class Result<T> {
     //    content 返回体报文的出参，使用泛型兼容不同的类型
     private T data;
 
-    public Integer getStatus() {
-        return status;
+    public Integer getCode() {
+        return code;
     }
 
-    public void setStatus(Integer code) {
-        this.status = code;
+    public void setCode(Integer code) {
+        this.code = code;
     }
 
     public String getMsg() {
@@ -41,7 +41,7 @@ public class Result<T> {
     @Override
     public String toString() {
         return "Result{" +
-                "status=" + status +
+                "code=" + code +
                 ", msg='" + msg + '\'' +
                 ", data=" + data +
                 '}';

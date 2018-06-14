@@ -2,6 +2,8 @@ package com.cn.mapper;
 
 import com.cn.model.BaseUser;
 
+import java.util.Map;
+
 public interface BaseUserMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +16,5 @@ public interface BaseUserMapper {
     int updateByPrimaryKeySelective(BaseUser record);
 
     int updateByPrimaryKey(BaseUser record);
+    Map<String ,Object> login(BaseUser record);
 }

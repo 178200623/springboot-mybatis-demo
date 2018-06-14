@@ -10,7 +10,7 @@ public class ResultUtil {
      */
     public static Result success(Object object){
         Result result = new Result();
-        result.setStatus(2000);
+        result.setCode(2000);
         result.setMsg("操作成功");
         result.setData(object);
         return result;
@@ -32,7 +32,7 @@ public class ResultUtil {
      */
     public static Result error(Integer code,String msg){
         Result result = new Result();
-        result.setStatus(code);
+        result.setCode(code);
         result.setMsg(msg);
         result.setData(null);
         return result;
@@ -45,7 +45,7 @@ public class ResultUtil {
      */
     public static Result error(ExceptionEnum exceptionEnum){
         Result result = new Result();
-        result.setStatus(exceptionEnum.getCode());
+        result.setCode(exceptionEnum.getCode());
         result.setMsg(exceptionEnum.getMsg());
         result.setData(null);
         return result;
