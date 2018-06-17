@@ -20,8 +20,12 @@ public class ResultUtil {
      * 提供给部分不需要出參的接口
      * @return
      */
-    public static Result success(){
-        return success(null);
+    public static Result success(Integer code,String msg){
+
+        Result result = new Result();
+        result.setCode(code);
+        result.setMsg(msg);
+        return result;
     }
 
     /**

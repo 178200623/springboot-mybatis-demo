@@ -37,6 +37,11 @@
     from partner_team a,workimages b,position c
     where a.position_id=c.id and c.position_img=b.image_id and a.position_id = 1
   </select>
+  <select id="findAllPartner" resultType="java.util.Map" >
+    select a.Parend_id as ID, a.name as YGXM, a.create_time as RZSJ, b.position_name as YGZW
+    from partner_team a, position b
+    where a.position_id=b.id
+  </select>
   <select id="selectOtherPartner" resultType="java.util.Map" >
     select a.Parend_id as ParendId ,b.image_path as img,c.position_name as title
     from partner_team a,workimages b,position c

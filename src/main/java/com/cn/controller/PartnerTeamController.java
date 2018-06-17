@@ -4,9 +4,7 @@ import com.cn.service.PartnerTeamService;
 import com.cn.util.Result;
 import com.cn.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +44,45 @@ public class PartnerTeamController {
         mapList = partnerTeamService.selelctOtherPartner();
 
         result = ResultUtil.success(mapList);
+        return result;
+    }
+
+    /**
+     * 获取职员列表
+     * @return
+     * @throws Exception
+     */
+    @ResponseBody
+    @RequestMapping(value = "api/staff",method = RequestMethod.GET)
+    public Result findAllPartner(@RequestParam("pageNum") int pageNum,@RequestParam("pageCount") int pageCount) throws Exception{
+
+        result = ResultUtil.success(partnerTeamService.findAllPartner(pageNum,pageCount));
+        return result;
+    }
+    /**
+     * 删除员工
+     * @return
+     * @throws Exception
+     */
+    @ResponseBody
+    @RequestMapping(value = "api/staff",method = RequestMethod.DELETE)
+    public Result delPartner(@RequestParam("ids") int[] ids) throws Exception{
+
+        for (int i:ids) {
+            int res = partnerTeamService.deleteByPrimaryKey(i);
+            if (res > 0 ){
+                result = ResultUtil.success(2000,"删除成功");
+            }else{
+                result = ResultUtil.success(3000,"删除失败");
+            }
+        }
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "api/staff",method = RequestMethod.POST)
+    public Result updatePartner(@RequestBody Map<String,Object> body) throws Exception{
+        partnerTeamService.updateByPrimaryKey((Map<String, Object>) body.get("staff"));
         return result;
     }
 }

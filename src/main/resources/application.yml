@@ -4,9 +4,9 @@ server:
 spring:
     datasource:
         name: test
-        url: jdbc:mysql://219.234.5.196:3306/mytest
-        username: root
-        password: yiyitong
+        url: jdbc:mysql://xdm441981585.my3w.com/xdm441981585_db
+        username: xdm441981585
+        password: moment140301
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver
@@ -52,3 +52,12 @@ multipart.maxRequestSize: 50Mb
 #自定义文件上传路径
 web:
   upload-path: D:/img
+
+
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

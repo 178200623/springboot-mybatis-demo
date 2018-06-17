@@ -23,4 +23,6 @@ public interface PartnerTeamMapper {
     List<Map<String, Object>> selectOtherPartner();
 
     List<Map<String, Object>> selectPartner();
+
+    List<Map<String, Object>> findAllPartner();
 }

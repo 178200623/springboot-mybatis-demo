@@ -1,13 +1,10 @@
 package com.cn.controller;
 
-import com.cn.model.Introduct;
 import com.cn.service.IntroductService;
 import com.cn.util.Result;
 import com.cn.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class IntroductController {
@@ -17,11 +14,23 @@ public class IntroductController {
 
     private Result result ;
     @ResponseBody
-    @RequestMapping("/api/summary/introduction")
+    @RequestMapping(value = "/api/summary/introduction",method = RequestMethod.GET)
     public Result selectContent() throws Exception {
 
-        ;
         result = ResultUtil.success(introductService.selectContent());
+        return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/api/summary/introduction",method = RequestMethod.POST)
+    public Result updateContent(@RequestParam("introduction") String introduction) throws Exception {
+
+        int res = introductService.updateContent(introduction);
+        if (res > 0)
+            result = ResultUtil.success(2000,"上传成功");
+        else {
+            result = ResultUtil.error(3000,"上传失败");
+        }
         return result;
     }
 }

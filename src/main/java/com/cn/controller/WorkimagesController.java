@@ -37,8 +37,9 @@ public class WorkimagesController {
      * @throws FileNotFoundException
      */
     @ResponseBody
-    @RequestMapping(value="/img",method = RequestMethod.POST)
+    @RequestMapping(value="/api/img",method = RequestMethod.POST)
     public String SaveImg(@RequestParam("file") MultipartFile file, HttpServletRequest request) throws FileNotFoundException {
+
 
         if (!file.isEmpty()) {
             String saveFileName = file.getOriginalFilename();

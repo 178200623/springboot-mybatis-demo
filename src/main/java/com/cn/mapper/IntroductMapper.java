@@ -18,4 +18,6 @@ public interface IntroductMapper {
     int updateByPrimaryKey(Introduct record);
 
     Map<String,Object> selectContentById();
+
+    int updateContent(Introduct record);
 }

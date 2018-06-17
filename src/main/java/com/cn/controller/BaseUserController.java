@@ -29,13 +29,13 @@ public class BaseUserController extends HandlerInterceptorAdapter {
 
 
     @ResponseBody
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/api/works/login",method = RequestMethod.POST)
     public Result loginVerify(@RequestBody Map<String,Object> body) throws Exception{
 
 
         boolean re = baseUserService.login(body);
         if (re == true){
-            result = ResultUtil.success();
+            result = ResultUtil.success(2000,"登录成功");
         }else {
             result = ResultUtil.error(3000,"登录失败");
         }

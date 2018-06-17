@@ -6,6 +6,7 @@ import com.cn.service.IntroductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Map;
 
 
@@ -25,5 +26,18 @@ public class IntroductServiceImpl implements IntroductService {
             e.printStackTrace();
         }
         return introduct;
+    }
+
+
+    @Override
+    public int updateContent(String content) {
+
+        Introduct introduct = new Introduct();
+        introduct.setContent(content);
+        introduct.setId(1);
+        Date date = new Date();
+        introduct.setLastModifyTime(date);
+        introduct.setLastModifyUserId("0001");
+        return introductMapper.updateContent(introduct);
     }
 }

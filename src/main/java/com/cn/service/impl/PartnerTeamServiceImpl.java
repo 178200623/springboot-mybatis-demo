@@ -1,14 +1,13 @@
 package com.cn.service.impl;
 
 import com.cn.mapper.PartnerTeamMapper;
+
 import com.cn.service.PartnerTeamService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class PartnerTeamServiceImpl implements PartnerTeamService {
@@ -99,4 +98,63 @@ public class PartnerTeamServiceImpl implements PartnerTeamService {
         return listTeam;
     }
 
+
+
+    @Override
+    public Map<String, Object> findAllPartner(int pageNum, int pageCount) throws Exception {
+
+        List<Map<String, Object>> listAllPartner = null;
+        Map<String,Object> findAll = new HashMap<>();
+        int total = 0;
+        try{
+            PageHelper.startPage(pageNum, pageCount);
+            listAllPartner = partnerTeamMapper.findAllPartner();
+            total = listAllPartner.size();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        findAll.put("staff",listAllPartner);
+        findAll.put("total",total);
+        return findAll;
+    }
+
+    @Override
+    public int deleteByPrimaryKey(Integer id) throws Exception {
+
+        int res = 0;
+        try{
+            res = partnerTeamMapper.deleteByPrimaryKey(id);
+        }catch (Exception e){
+            e.printStackTrace();
+
+        }
+        return res;
+    }
+
+    @Override
+    public int updateByPrimaryKey(Map<String,Object> body) throws Exception {
+
+
+//        Map<String,Object> baseinfo = (Map<String, Object>) body.get("baseinfo");
+//        List<Map<String,Object>> exinfo = (List<Map<String, Object>>) body.get("exinfo");
+//        int res = 0;
+//        PartnerTeam partnerTeam = new PartnerTeam();
+//        Resume resume = new Resume();
+//        String id = baseinfo.get("ID").toString();
+//
+//        try{
+//            if (!"".equals(id) && id != null){
+//                partnerTeam.setCreateTime((Date) baseinfo.get("RZSJ"));
+//                partnerTeam.setName(baseinfo.get("YGXM").toString());
+//                partnerTeam.setParendId(baseinfo.get("YGZW").toString());
+//                resume.setResume();
+//                res = partnerTeamMapper.updateByPrimaryKey(partnerTeam);
+//
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//
+//        }
+        return 0;
+    }
 }
