@@ -20,7 +20,7 @@
   <select id="selectContent" resultType="java.util.Map" >
     select DATE_FORMAT(a.awardsdate_time,'%Y年') as year,a.awards_name as content,b.image_path as img
     from awards a,workimages b
-    where a.award_img=b.image_id
+    where a.award_img=b.image_id and b.status=7
     order by year desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

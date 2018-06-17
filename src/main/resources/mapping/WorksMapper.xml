@@ -41,7 +41,7 @@
   <select id="selectListWorks" resultType="java.util.Map">
     select a.id as id,b.image_path as img,a.work_name as name,c.worktype_name as type,a.completion_time as years
     from works a,workimages b,worktype c
-    where a.id=b.image_id and a.worktype_id =c.id and b.mainfigure=0
+    where a.id=b.image_id and a.worktype_id =c.id and b.mainfigure=0 and b.status=1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from works

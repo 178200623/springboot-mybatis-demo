@@ -24,7 +24,7 @@
   <select id="selectContentById" resultType="java.util.Map" >
     select a.content as introduction,b.image_path as img
     from introduct a,workimages b
-    where a.introduct_img =b.image_id and  a.id = 1
+    where a.introduct_img =b.image_id and  a.id = 1 and b.status=5
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from introduct

@@ -35,7 +35,7 @@
   <select id="selectPartner" resultType="java.util.Map" >
     select a.Parend_id as ParendId ,b.image_path as img
     from partner_team a,workimages b,position c
-    where a.position_id=c.id and c.position_img=b.image_id and a.position_id = 1
+    where a.position_id=c.id and c.position_img=b.image_id and a.position_id = 1 and b.status=6
   </select>
   <select id="findAllPartner" resultType="java.util.Map" >
     select a.Parend_id as ID, a.name as YGXM, a.create_time as RZSJ, b.position_name as YGZW

@@ -26,7 +26,7 @@
   <select id="selectContent" resultType="java.util.Map" >
     select DATE_FORMAT(a.exhibit_time,'%Y年') as time,a.exhibit_name as name,a.exhibit_address as address ,b.image_path as img
     from exhibition a,workimages b
-    where a.exhibit_img = b.image_id
+    where a.exhibit_img = b.image_id and b.status=4
     order by exhibit_time
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >

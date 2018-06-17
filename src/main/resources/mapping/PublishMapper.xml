@@ -31,7 +31,7 @@
   <select id="selectPublishByYear" resultType="java.util.Map" parameterType="java.lang.String">
     select a.publish_name as name,DATE_FORMAT(a.publish_time,'%Y') as time,a.description as description,b.image_path as img
     from publish a left join workimages b on a.publish_img=b.image_id
-    where  DATE_FORMAT(a.publish_time,'%Y') = #{remember_time,jdbcType=VARCHAR}
+    where   b.status=2 and DATE_FORMAT(a.publish_time,'%Y') = 2018
     order by a.publish_time desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
