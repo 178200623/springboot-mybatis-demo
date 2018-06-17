@@ -32,8 +32,8 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectById" resultType="java.util.Map" parameterType="java.lang.Integer" >
-    select a.id as id, a.work_name as name, c.worktype_name as type, a.constructionsite as location, a.coveredarea as area,
-      a.completion_time as designtime,a.description as description,b.image_path as img
+    select a.id as id, a.work_name as name,a.worksketch as worksketch,a.completion_time as overtime, c.worktype_name as type, a.constructionsite as location, a.coveredarea as area,
+      CONCAT(date_format(a.designstart_time,'%Y'),'-',date_format(designstop_time,'%Y')) as designtime,a.description as description,b.image_path as img
     from works a,workimages b,worktype c
     where a.id=b.image_id and a.worktype_id =c.id and a.id = #{id,jdbcType=INTEGER}
     order by b.mainfigure
